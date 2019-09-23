@@ -1,0 +1,117 @@
+openapi: 3.0.1
+info:
+  title: Base
+  description: Base Description
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:3000'
+  - url: 'Remote Api'
+paths:
+  /:
+    get:
+      tags:
+        - Public
+      summary: Get App version
+      responses:
+        200:
+          $ref: '#/components/responses/version'
+  /private:
+    get:
+      security:
+        - cookieAuth: []
+      tags:
+        - Public
+      summary: Get App version
+      responses:
+        200:
+          $ref: '#/components/responses/version'
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login Using Our login method
+      requestBody:
+        $ref: '#/components/requestBodies/login'
+      responses:
+        200:
+          $ref: '#/components/responses/login'
+
+
+
+
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+    cookieAuth:         # arbitrary name for the security scheme; will be used in the "security" key later
+      type: apiKey
+      in: cookie
+      name: connect.sid
+  #-----------------------------------------------------------------------------------------------------#
+
+  responses:
+    version:
+      description: App Version.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/version'
+    login:
+      description: Login Response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/login'
+
+  #-----------------------------------------------------------------------------------------------------#
+  requestBodies:
+    login:
+      required: true
+      description: Login
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/user'
+  #-----------------------------------------------------------------------------------------------------#
+  schemas:
+    version:
+      type: object
+      properties:
+        version:
+          type: "string"
+          example: "0.0.0"
+        name:
+          type: "string"
+          example: "Api"
+    login:
+      type: object
+      properties:
+        username:
+          type: "string"
+          example: "mohammd@mo.com"
+        password:
+          type: "string"
+          example: "123456789"
+    user:
+      type: object
+      properties:
+        first_name:
+          type: "string"
+          example: "Mohammed"
+        last_name:
+          type: "string"
+          example: "Salah"
+        email:
+          type: "string"
+          example: "mohammd@mo.com"
+        password:
+          type: "string"
+          example: "123456"
+
+
+
+
+
