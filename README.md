@@ -147,11 +147,11 @@ in the constructor of BaseController
 first is the path of controller 
 and private || public for make this controller pass on first layer or not (Authentication)
 
-###3- Database
+### 3- Database
 you can Configure whatever any database you want 
 this one configured to be used with mongodb (Mongoose)
 
-###4- Docs
+### 4- Docs
 
 Using swagger to show the out put of the documentation in your api /docs
 
@@ -166,7 +166,8 @@ Using swagger to show the out put of the documentation in your api /docs
           $ref: '#/components/responses/version'
 ```
 
-###5- Helpers 
+### 5-Helpers
+
 contains the
     * Error handling  
     * notifications
@@ -175,5 +176,5 @@ contains the
     * validation
     * crypto
     
-###6- Services
+### 6- Services
 implementing Your own business will be in Service    
